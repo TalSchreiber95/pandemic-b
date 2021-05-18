@@ -18,7 +18,7 @@ Player& Player::drive(City c){
 
 Player& Player::fly_direct(City c){
     if(!cards.contains(c)){// if there is no card for this city throw execption
-        throw invalid_argument{"Execption: card's " + cityToString(c)+" doesn't exist"};
+        throw invalid_argument{"Execption: card's " + cityToString(c)+" doesn'card exist"};
     }
     if(city == c){
         throw std::invalid_argument{"Execption: local city is same to " + cityToString(c)};
@@ -40,7 +40,7 @@ Player& Player::fly_charter(City c){
         return *this;
     }
 
-    throw invalid_argument{"Execption: card's " + cityToString(c)+" doesn't exist"};
+    throw invalid_argument{"Execption: card's " + cityToString(c)+" doesn'card exist"};
 
 }
 
@@ -70,8 +70,8 @@ Player& Player::discover_cure(Color c){
         throw invalid_argument{"Execption: city "+cityToString(city)+" must have research station!"};
     }
     int count = 0;
-    for(const auto& t : cards){
-        if(Board::colorOf(t) == c){
+    for(const auto& card : cards){
+        if(Board::colorOf(card) == c){
             count++;
         }
     }
@@ -79,13 +79,13 @@ Player& Player::discover_cure(Color c){
         throw invalid_argument{"Execption: there is only "+to_string(count)+" "+ colorToString(c) + " cards remaining " };
     }
     count = 1;
-    for(auto it = cards.begin(); it != cards.end(); count++){
+    for(auto card = cards.begin(); card != cards.end(); count++){
         if(count == CardLimit) { break; } 
-        if(Board::colorOf(*it) == c) {
-            it = cards.erase(it);
+        if(Board::colorOf(*card) == c) {
+            card = cards.erase(card);
         }
         else {
-            ++it; 
+            ++card; 
         }
     }
     board.mark_cured(c);

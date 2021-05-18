@@ -4,21 +4,19 @@
 #include <map>
 #include <set>
 #include <iostream>
-using namespace std;
 namespace pandemic {
 
     class Board {
 
         static map<City, set<City>> connections; // the set of the citys that connected to each city
-        map<City, int> diseasBox;
-        // bool medicine[4] = {0};
+        map<City, int> diseaseBox;
         set<Color> medicine;
         set<City> researchStations;
 
         public:
             Board() {}
 
-            int& operator[](City c); // update diseasBox, for example board[City::HongKong]=2 means disease_cube[HongKong]=2
+            int& operator[](City c); // update diseasBox, for example board[City::HongKong]=2 means diseaseBox[HongKong]=2
             bool is_clean(); // is the board clean from disease?
             static bool is_connected(City& c1, City& c2); // is there connection between those two cities?
             void update_research_station(City c); // place reseach station in this city

@@ -1,6 +1,5 @@
 #pragma once
 #include "City.hpp"
-using namespace std;
 enum Color{
     Yellow,
     Red,
@@ -16,7 +15,7 @@ inline string colorToString(int c) {
 }
 
 //  compared to cities_map.txt 
-const map<City, Color> cities_colors {
+const map<City, Color> citiesToColor {
     { Algiers, Black },
     { Atlanta, Blue },
     { Baghdad, Black },

@@ -10,9 +10,9 @@ Player& GeneSplicer::discover_cure(Color c){
         throw invalid_argument{"Execption: there is only "+to_string(cards.size())+" "+ colorToString(c) + " cards remaining " };
     }
     int count = 1;
-    for(auto it = cards.begin(); it != cards.end(); count++){
+    for(auto card = cards.begin(); card != cards.end(); count++){
         if(count == CardLimit ){ break; }
-        it = cards.erase(it);
+        card = cards.erase(card);
     }
     board.mark_cured(c);
     return *this;

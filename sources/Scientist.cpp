@@ -7,8 +7,8 @@ Player& Scientist::discover_cure(Color c) {
         throw invalid_argument{"Execption: city "+cityToString(city)+" must have research station!"};
     }
     int count = 0;
-    for(const auto& t : cards){
-        if(Board::colorOf(t) == c){
+    for(const auto& card : cards){
+        if(Board::colorOf(card) == c){
             count++;
         }
     }
@@ -16,13 +16,13 @@ Player& Scientist::discover_cure(Color c) {
         throw invalid_argument{"Execption: there is only "+to_string(count)+" "+ colorToString(c) + " cards remaining " };
     }
     count = 1;
-    for(auto it = cards.begin(); it != cards.end(); count++){
+    for(auto card = cards.begin(); card != cards.end(); count++){
         if(count == n) { break; }
-        if(Board::colorOf(*it) == c) {
-            it = cards.erase(it);
+        if(Board::colorOf(*card) == c) {
+            card = cards.erase(card);
         }
         else {
-            ++it;
+            ++card;
         }
     }
     board.mark_cured(c);

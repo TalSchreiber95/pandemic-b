@@ -1,15 +1,13 @@
 #include "Board.hpp"
-
-using namespace std;
 using namespace pandemic;
 
 int& Board::operator[](City c) {
-    return diseasBox[c];
+    return diseaseBox[c];
 }
 
 bool Board::is_clean() {
-    for(auto& di: diseasBox) {
-        if(di.second > 0) {
+    for(auto& di: diseaseBox) {
+        if(di.second > 0) { // if there is disease that exist return false
             return false;
         }
     }
@@ -33,17 +31,17 @@ void Board::mark_cured(Color c) {
 }
 
 bool Board::is_cure_discoverd(City c) {
-    return (bool)medicine.count(colorOf(c));
+    return medicine.count(colorOf(c))==1;
 }
 
 Color Board::colorOf(City c) {
-    return cities_colors.at(c);
+    return citiesToColor.at(c);
 }
 
 ostream& pandemic::operator<<(ostream& out, const Board& b) {
     out <<  "__________________________ Board _________________________"<<endl<<endl;
     out <<  "level of disease:"  << endl;
-    for(const auto& di: b.diseasBox) {
+    for(const auto& di: b.diseaseBox) {
         out <<"  ["<<di.second<<"] "<< cityToString(di.first)<<endl;
     }
     out << endl;
